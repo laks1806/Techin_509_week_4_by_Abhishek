@@ -24,6 +24,24 @@ def flood_fill(input_board, old, new, x, y):
     """
 
     # Implement your code here.
+      def rec_flood_fill(x,y):
+        if (    
+            x < 0 
+            or x >= len(input_board)
+            or y <=0 
+            or y >= len(input_board[0])
+            or input_board[x][y] != old
+        ):
+            return
+        
+        input_board[x] = input_board[x][:y] + new + input_board[x][y + 1:]
+        rec_flood_fill(x+1 , y)
+        rec_flood_fill(x-1, y)
+        rec_flood_fill(x , y+1)
+        rec_flood_fill(x, y - 1)
+
+    rec_flood_fill(x,y)
+    return input_board
 
 
 modified_board = flood_fill(input_board=board, old=".", new="~", x=5, y=12)
